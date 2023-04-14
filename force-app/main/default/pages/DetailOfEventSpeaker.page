@@ -1,0 +1,5 @@
+<apex:page standardController="EventSpeakerController">
+<apex:form>
+    
+</apex:form>
+</apex:page>
