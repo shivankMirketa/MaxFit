@@ -1,0 +1,46 @@
+<apex:page controller="EventSpeakerDetailsController">
+    <style>
+      
+      .buttonStyle { 
+        width: 300px;height: :100px; margin: 0 auto;font:20px; color:blue  ;
+       }
+       .buttonStyle1 { 
+        width: 300px; margin: 0;font:20px auto; 
+       }
+ </style>
+    <apex:form >
+        <apex:pageBlock >
+            <div align="center" style="margin:15px; border:3px solid black ;font:italic small-caps bold 17px/35px Georgia, serif;color:white;background-color:rgb(39, 144, 32)">
+                <span style="margin:15px; padding:15px">{!evt.Name__c}</span><br/><br/>
+                <span style="margin:15px; padding:15px"><apex:outputLabel value="Organized By: "/> {!evt.Event_Organizer__r.Name}<br/><br/><br/></span>
+            </div>
+            <div style="margin:15px ;font:italic small-caps bold 15px/30px Georgia, serif;color:brown">
+                <apex:outputLabel value="Location: "/> {!evt.Location_Address_Book__r.Name}<br/>
+                <apex:outputLabel value="Start: "/> {!evt.Start_Date_Time__c}<br/>
+            </div>
+            <div style="border:3px solid black; margin:15px; padding:15px;font:italic small-caps bold 15px/30px Georgia, serif;color:white;background-color:red">
+                <apex:outputLabel value="Speakers"/>
+            </div>
+            <div style="display:flex;">
+                <apex:repeat value="{!evtSpkr}" var="spkr">
+                    <div style="padding:15px; border:3px solid black; margin:15px; width:33%;background-color: rgb(186, 182, 107);color:white">
+                        <span style="font:normal small-caps bold 15px/30px Georgia, serif">{!spkr.Speaker__r.Name}</span>
+                        <br/><br/><br/>
+                        <span style="font:normal small-caps bold 15px/30px Georgia, serif;color:blue"><apex:outputLink value="{!spkr.Speaker__r.Profile_URL__c}" >{!spkr.Speaker__r.Profile_URL__c}</apex:outputLink>
+                           </span>
+                        <br/>
+                        <span style="padding:15px;font:normal small-caps bold 15px/30px Georgia, serif"><apex:outputText escape="false" value="{!spkr.Speaker__r.About_Me__c}" /></span>
+                    </div>                                        
+                </apex:repeat>
+            </div>
+            <div align="center" draggable="false"  >
+                <apex:commandButton value="Add Attendee" styleClass="buttonStyle" action="{!saveAsAttendee}"/>
+            <apex:commandButton value="Add Speaker" styleClass="buttonStyle1" action="{!saveAsSpeaker}"/>
+            </div>
+            
+        </apex:pageBlock>
+        
+           
+       
+    </apex:form>
+</apex:page>
